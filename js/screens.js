@@ -1,6 +1,19 @@
-// Shows and hides the app screens. Navigation is filled in later.
+// Shows one screen at a time and follows the buttons between them.
 
-export function mountScreens(root, session) {
-  root.dataset.ready = "true";
-  root.dataset.session = session.game ? "linked" : "missing";
+export function mountScreens(root) {
+  const screens = [...root.querySelectorAll("[data-screen]")];
+
+  function show(name) {
+    for (const screen of screens) {
+      screen.hidden = screen.dataset.screen !== name;
+    }
+  }
+
+  root.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-go]");
+    if (!button || !root.contains(button)) return;
+    show(button.dataset.go);
+  });
+
+  show("menu");
 }

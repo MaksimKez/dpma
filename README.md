@@ -15,4 +15,6 @@ A maze game that will roll a ball when the phone is tilted.
 - `sw.js` — offline cache
 - `manifest.webmanifest` — install metadata
 
-Open `index.html` in a browser. Modules need a local server or the browser will block them.
+The page has three screens: menu, game, and scores. Buttons move between them. The maze itself is not drawn yet.
+
+Open the folder with any static server, then open the site root. A `file://` address blocks the module script.

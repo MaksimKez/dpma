@@ -1,4 +1,4 @@
-<!-- App shell. Each script module owns one job. -->
+<!-- App shell. Screens live here; each script module owns one job. -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,7 +9,34 @@
     <link rel="manifest" href="manifest.webmanifest" />
   </head>
   <body>
-    <h1>Tilt Maze</h1>
+    <main>
+      <section data-screen="menu">
+        <h1>Tilt Maze</h1>
+        <p>Tilt the phone so the ball rolls to the exit. Wall hits are marked with a short vibration.</p>
+        <div class="actions">
+          <button type="button" data-go="game">Play</button>
+          <button type="button" data-go="scores">Scores</button>
+        </div>
+      </section>
+
+      <section data-screen="game" hidden>
+        <p class="timer">Time <span>0:00</span></p>
+        <div class="board" role="img" aria-label="Maze will appear here"></div>
+        <div class="actions">
+          <button type="button" data-go="menu">Menu</button>
+        </div>
+      </section>
+
+      <section data-screen="scores" hidden>
+        <h1>Scores</h1>
+        <p>No saved times yet.</p>
+        <ol class="score-list"></ol>
+        <div class="actions">
+          <button type="button" data-go="game">Play again</button>
+          <button type="button" data-go="menu">Menu</button>
+        </div>
+      </section>
+    </main>
     <script type="module" src="js/app.js"></script>
   </body>
 </html>
