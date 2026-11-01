@@ -45,14 +45,13 @@ button {
 }
 
 .board {
-  height: min(70vw, 22rem);
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
   margin-bottom: 1rem;
-  border: 2px solid #d7e2ea;
   border-radius: 0.6rem;
-  background:
-    linear-gradient(#1c242c 1px, transparent 1px) 0 0 / 1.5rem 1.5rem,
-    linear-gradient(90deg, #1c242c 1px, transparent 1px) 0 0 / 1.5rem 1.5rem,
-    #151b20;
+  background: #151b20;
 }
 
 .score-list:empty {

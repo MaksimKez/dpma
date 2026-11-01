@@ -4,6 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101418" />
     <title>Tilt Maze</title>
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="manifest" href="manifest.webmanifest" />
@@ -12,7 +13,7 @@
     <main>
       <section data-screen="menu">
         <h1>Tilt Maze</h1>
-        <p>Tilt the phone so the ball rolls to the exit. Wall hits are marked with a short vibration.</p>
+        <p>Roll the ball to the green exit. On a computer, hold the arrow keys or WASD.</p>
         <div class="actions">
           <button type="button" data-go="game">Play</button>
           <button type="button" data-go="scores">Scores</button>
@@ -20,8 +21,8 @@
       </section>
 
       <section data-screen="game" hidden>
-        <p class="timer">Time <span>0:00</span></p>
-        <div class="board" role="img" aria-label="Maze will appear here"></div>
+        <p class="timer">Time <span>0:00.0</span></p>
+        <canvas class="board" aria-label="Maze"></canvas>
         <div class="actions">
           <button type="button" data-go="menu">Menu</button>
         </div>
