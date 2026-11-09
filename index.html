@@ -14,6 +14,7 @@
       <section data-screen="menu">
         <h1>Tilt Maze</h1>
         <p>Roll the ball to the green exit. On a computer, hold the arrow keys or WASD.</p>
+        <p class="best" hidden></p>
         <div class="actions">
           <button type="button" data-go="game">Play</button>
           <button type="button" data-go="scores">Scores</button>
@@ -30,10 +31,11 @@
 
       <section data-screen="scores" hidden>
         <h1>Scores</h1>
-        <p>No saved times yet.</p>
+        <p class="score-empty">No saved times yet.</p>
         <ol class="score-list"></ol>
         <div class="actions">
           <button type="button" data-go="game">Play again</button>
+          <button type="button" data-action="clear">Clear</button>
           <button type="button" data-go="menu">Menu</button>
         </div>
       </section>

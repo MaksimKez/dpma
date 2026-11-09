@@ -4,7 +4,7 @@ import { createMaze, findCell } from "./maze.js";
 import { createBall, stepBall, touchesCell } from "./motion.js";
 import { formatTime } from "./time.js";
 
-export function createGame({ canvas, timer }) {
+export function createGame({ canvas, timer, onFinish }) {
   const keys = { left: false, right: false, up: false, down: false };
   let maze = createMaze();
   let frame = 0;
@@ -37,6 +37,7 @@ export function createGame({ canvas, timer }) {
       timer.textContent = formatTime(elapsed);
       if (touchesCell(ball, findCell(maze, "E"), cellSize)) {
         finished = true;
+        onFinish?.(elapsed);
       }
     }
     draw(cellSize);
