@@ -40,8 +40,16 @@ button {
   color: #101418;
 }
 
+button:disabled {
+  opacity: 0.45;
+}
+
 .timer {
   font-variant-numeric: tabular-nums;
+}
+
+.hint {
+  color: #b7c3cc;
 }
 
 .board {

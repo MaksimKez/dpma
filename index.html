@@ -13,10 +13,12 @@
     <main>
       <section data-screen="menu">
         <h1>Tilt Maze</h1>
-        <p>Roll the ball to the green exit. On a computer, hold the arrow keys or WASD.</p>
+        <p>Pick a size. Each play builds a new maze. Roll the ball to the green exit with the arrow keys or WASD.</p>
         <p class="best" hidden></p>
         <div class="actions">
-          <button type="button" data-go="game">Play</button>
+          <button type="button" data-go="game" data-level="easy">Easy</button>
+          <button type="button" data-go="game" data-level="hard">Hard</button>
+          <button type="button" data-go="game" data-level="very-hard">Very hard</button>
           <button type="button" data-go="scores">Scores</button>
         </div>
       </section>
@@ -25,6 +27,7 @@
         <p class="timer">Time <span>0:00.0</span></p>
         <canvas class="board" aria-label="Maze"></canvas>
         <div class="actions">
+          <button type="button" data-action="hint" hidden>Hint</button>
           <button type="button" data-go="menu">Menu</button>
         </div>
       </section>
