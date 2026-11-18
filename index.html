@@ -25,7 +25,14 @@
 
       <section data-screen="game" hidden>
         <p class="timer">Time <span>0:00.0</span></p>
+        <p class="tilt-note" hidden>Tilt is not available. Use the keys or the buttons.</p>
         <canvas class="board" aria-label="Maze"></canvas>
+        <div class="pad">
+          <button type="button" data-hold="up">Up</button>
+          <button type="button" data-hold="left">Left</button>
+          <button type="button" data-hold="down">Down</button>
+          <button type="button" data-hold="right">Right</button>
+        </div>
         <div class="actions">
           <button type="button" data-action="hint" hidden>Hint</button>
           <button type="button" data-go="menu">Menu</button>

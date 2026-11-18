@@ -1,5 +1,6 @@
 // Starts the page, runs the chosen maze, and keeps the best times on this device.
 
+import { createFeedback } from "./feedback.js";
 import { createGame } from "./game.js";
 import { showScores } from "./scoreList.js";
 import { mountScreens } from "./screens.js";
@@ -13,6 +14,8 @@ const game = createGame({
   canvas: document.querySelector(".board"),
   timer: document.querySelector(".timer span"),
   hintButton: document.querySelector("[data-action='hint']"),
+  tiltNote: document.querySelector(".tilt-note"),
+  feedback: createFeedback(),
   onFinish(time) {
     scores.add(time);
     showScores(root, scores);

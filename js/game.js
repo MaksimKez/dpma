@@ -11,7 +11,7 @@ const LEVELS = {
   "very-hard": 31,
 };
 
-export function createGame({ canvas, timer, hintButton, onFinish }) {
+export function createGame({ canvas, timer, hintButton, tiltNote, feedback, onFinish }) {
   const keys = { left: false, right: false, up: false, down: false };
   let maze = createMaze();
   let frame = 0;
@@ -38,15 +38,40 @@ export function createGame({ canvas, timer, hintButton, onFinish }) {
     onKey(event, false);
   }
 
+  const held = new Map();
+
+  function heldDirection(event) {
+    const button = event.target.closest("[data-hold]");
+    if (!button || !running) return "";
+    return button.dataset.hold;
+  }
+
+  function onPointerDown(event) {
+    const direction = heldDirection(event);
+    if (!direction) return;
+    held.set(event.pointerId, direction);
+    keys[direction] = true;
+    event.target.setPointerCapture?.(event.pointerId);
+    event.preventDefault();
+  }
+
+  function onPointerUp(event) {
+    const direction = held.get(event.pointerId);
+    if (!direction) return;
+    held.delete(event.pointerId);
+    keys[direction] = false;
+  }
+
   function tick(now) {
     if (!running) return;
     const cellSize = canvas.width / maze.cols;
     if (!finished) {
-      stepBall(ball, maze, cellSize, keys, 1 / 60);
+      if (stepBall(ball, maze, cellSize, keys, 1 / 60)) feedback.hit();
       const elapsed = now - startedAt;
       timer.textContent = formatTime(elapsed);
       if (touchesCell(ball, findCell(maze, "E"), cellSize)) {
         finished = true;
+        feedback.finish();
         onFinish?.(elapsed);
       }
     }
@@ -82,7 +107,11 @@ export function createGame({ canvas, timer, hintButton, onFinish }) {
       hintButton.hidden = level !== "very-hard";
       hintButton.disabled = false;
       running = true;
+      tiltNote.hidden = false;
       window.addEventListener("keydown", onKeyDown);
+      window.addEventListener("pointerdown", onPointerDown);
+      window.addEventListener("pointerup", onPointerUp);
+      window.addEventListener("pointercancel", onPointerUp);
       window.addEventListener("keyup", onKeyUp);
       frame = requestAnimationFrame(tick);
     },
@@ -91,6 +120,9 @@ export function createGame({ canvas, timer, hintButton, onFinish }) {
       cancelAnimationFrame(frame);
       window.removeEventListener("keydown", onKeyDown);
       window.removeEventListener("keyup", onKeyUp);
+      window.removeEventListener("pointerdown", onPointerDown);
+      window.removeEventListener("pointerup", onPointerUp);
+      window.removeEventListener("pointercancel", onPointerUp);
       keys.left = keys.right = keys.up = keys.down = false;
     },
     revealPath() {

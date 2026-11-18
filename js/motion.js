@@ -24,16 +24,22 @@ export function stepBall(ball, maze, cellSize, input, dt) {
   ball.vy *= drag;
 
   // Move one axis at a time. If the circle overlaps a wall, put it back and stop that axis.
+  let hit = false;
+  const speedX = ball.vx;
   ball.x += ball.vx * dt;
   if (overlapsWall(ball, maze, cellSize)) {
+    if (Math.abs(speedX) > 40) hit = true;
     ball.x -= ball.vx * dt;
     ball.vx = 0;
   }
+  const speedY = ball.vy;
   ball.y += ball.vy * dt;
   if (overlapsWall(ball, maze, cellSize)) {
+    if (Math.abs(speedY) > 40) hit = true;
     ball.y -= ball.vy * dt;
     ball.vy = 0;
   }
+  return hit;
 }
 
 function overlapsWall(ball, maze, cellSize) {

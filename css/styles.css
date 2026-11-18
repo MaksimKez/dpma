@@ -52,6 +52,25 @@ button:disabled {
   color: #b7c3cc;
 }
 
+.tilt-note {
+  color: #b7c3cc;
+}
+
+.pad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.pad button:first-child {
+  grid-column: 2;
+}
+
+.pad button {
+  touch-action: none;
+}
+
 .board {
   display: block;
   width: 100%;
