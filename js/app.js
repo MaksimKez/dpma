@@ -33,6 +33,10 @@ document.querySelector("[data-action='clear']").addEventListener("click", () => 
 
 showScores(root, scores);
 
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./sw.js");
+}
+
 mountScreens(root, {
   onShow(name, chosen) {
     if (name === "game") {
